@@ -127,7 +127,7 @@ LRESULT CALLBACK Tasktray::windowProc(
 
         pThis->hwnd_ = hwnd;
     } else {
-        pThis = (Tasktray *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+        pThis = reinterpret_cast<Tasktray *>(GetWindowLongPtr(hwnd, GWLP_USERDATA));
     }
 
     if (pThis) {
