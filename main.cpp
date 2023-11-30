@@ -373,7 +373,10 @@ int WINAPI wWinMain(
     SYSTEM_POWER_STATUS status{};
     GetSystemPowerStatus(&status);
     if (status.BatteryFlag & BatteryFlag::NoSystemBattery) {
-        logErr(L"It seems this computer does not work by battery. Quit.");
+        constexpr std::wstring_view msg =
+            L"It seems this computer does not work by battery. Quit.";
+        logErr(msg);
+        MessageBoxW(nullptr, msg.data(), L"btwatch", MB_OK | MB_ICONWARNING);
         return 0;
     }
 
